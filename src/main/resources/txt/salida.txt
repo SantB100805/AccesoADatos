@@ -1,0 +1,4 @@
+1: Hola
+2: Como estas
+3: Bieen y usted
+4: oki
