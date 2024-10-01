@@ -154,4 +154,5 @@ public class Personaje implements Comparable<Personaje> {
         // Comparar por el tamaño de la lista de películas
         return Integer.compare(otro.getFilms().size(), this.getFilms().size());
     }
+
 }
