@@ -24,10 +24,14 @@ public class JDBC_select1 {
             ResultSet rs = stmt.executeQuery("SELECT * FROM CLIENTES");
             while (rs.next()){
                 System.out.println("[" + (i++) + "]");
-                System.out.println("DNI: ");
+                System.out.println("DNI: "+ rs.getString("DNI"));
+                System.out.println("APELLIDOS: "+ rs.getString("APELLIDOS"));
+                System.out.println("CP: "+ rs.getString("CP"));
             }
         }catch (SQLException e) {
             System.out.println(e.getMessage());
+        }catch (Exception e) {
+            e.printStackTrace(System.err);
         }
     }
 }
