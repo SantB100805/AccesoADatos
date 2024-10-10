@@ -36,7 +36,7 @@ public class Wrapper {
 
     public Contacto buscarContactoPorCampo(String busqueda) {
         for (Contacto contacto : listaContactos) {
-            // Compara por nombre, apellidos, email y teléfonos
+            // Aqui comparo por nombre, apellidos, email y teléfonos
             if (contacto.getNombre().equalsIgnoreCase(busqueda) ||
                     contacto.getApellidos().equalsIgnoreCase(busqueda) ||
                     contacto.getEmail().equalsIgnoreCase(busqueda) ||
@@ -45,7 +45,7 @@ public class Wrapper {
                 return contacto; // Devuelve el contacto si hay coincidencia
             }
         }
-        return null; // Retorna null si no se encontró el contacto
+        return null; // Retorna null si no encuentro el contacto
     }
 
 
@@ -161,7 +161,7 @@ public class Wrapper {
                 NodeList nodeList = doc.getElementsByTagName("contacto");
                 for (int i = 0; i < nodeList.getLength(); i++) {
                     Node nodo = nodeList.item(i);
-                    if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+                    if (nodo.getNodeType() == Node.ELEMENT_NODE) { //Importante por que trabaja con elementos y puede que procese como elemento un nodo como el comentario
                         Element elemento = (Element) nodo;
                         String nombre = elemento.getElementsByTagName("nombre").item(0).getTextContent();
                         String apellidos = elemento.getElementsByTagName("apellidos").item(0).getTextContent();
@@ -169,13 +169,18 @@ public class Wrapper {
                         String telefono1 = elemento.getElementsByTagName("telefono1").item(0).getTextContent();
                         String telefono2 = elemento.getElementsByTagName("telefono2").item(0).getTextContent();
                         String direccion = elemento.getElementsByTagName("direccion").item(0).getTextContent();
-                        Contacto contacto = new Contacto(nombre, apellidos, email, telefono1, telefono2, direccion);
-                        listaContactos.add(contacto);
+                        Contacto nuevoContacto = new Contacto(nombre, apellidos, email, telefono1, telefono2, direccion);
+                        // Verificar si el contacto ya existe antes de agregarlo
+                        if (!listaContactos.contains(nuevoContacto)) {
+                            listaContactos.add(nuevoContacto);
+                        }
                     }
                 }
             } catch (Exception e) {
                 System.err.println("Error al leer el archivo XML: " + e.getMessage());
             }
+        } else {
+            System.out.println("El archivo XML no existe: " + archivo);
         }
     }
 
@@ -191,15 +196,29 @@ public class Wrapper {
 
     public void cargarDesdeJSON(String archivo) {
         if (Files.exists(Paths.get(archivo))) {
-            Gson gson = new Gson();
-            try (Reader reader = new FileReader(archivo)) {
-                Type tipoLista = new TypeToken<List<Contacto>>() {}.getType();
-                List<Contacto> contactosDesdeJson = gson.fromJson(reader, tipoLista);
-                listaContactos.addAll(contactosDesdeJson);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            try (FileReader reader = new FileReader(archivo)) {
+
+                // Deserializamos directamente una lista de contactos
+                Type contactoListType = new TypeToken<List<Contacto>>() {}.getType();
+                List<Contacto> contactosDesdeJSON = gson.fromJson(reader, contactoListType);
+
+                // Si la lista no es nula, agregamos los contactos a la lista evitando duplicados
+                if (contactosDesdeJSON != null) {
+                    for (Contacto contacto : contactosDesdeJSON) {
+                        if (!listaContactos.contains(contacto)) {
+                            listaContactos.add(contacto);
+                        }
+                    }
+                }
             } catch (IOException e) {
                 System.err.println("Error al leer el archivo JSON: " + e.getMessage());
             }
+        } else {
+            System.out.println("El archivo JSON no existe: " + archivo);
         }
     }
+
+
 }
 

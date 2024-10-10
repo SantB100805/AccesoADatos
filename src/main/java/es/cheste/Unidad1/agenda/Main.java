@@ -1,21 +1,10 @@
 package es.cheste.Unidad1.agenda;
 
-import java.io.*;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 public class Main {
 
@@ -134,7 +123,7 @@ public class Main {
         System.out.println(bundle.getString("contacto.campoBuscar"));
         String campoBusqueda = scanner.nextLine();
 
-        // Buscar el contacto utilizando el método que verifica cualquier campo
+        //Metodo buscar a la persona
         Contacto contacto = agenda.buscarContactoPorCampo(campoBusqueda);
 
         // Si el contacto no existe, mostrar un mensaje
@@ -216,7 +205,7 @@ public class Main {
         System.out.println(bundle.getString("contacto.campoBuscar"));
         String campoBusqueda = scanner.nextLine();
 
-        // Buscar el contacto utilizando el método que verifica cualquier campo
+        // Buscar a la persona
         Contacto contacto = agenda.buscarContactoPorCampo(campoBusqueda);
 
         // Verificar si el contacto fue encontrado
@@ -249,7 +238,7 @@ public class Main {
         }
 
         // Ordenar los contactos por apellidos
-        contactos.sort(null); // Utiliza el compareTo() de Contacto
+        contactos.sort(null); // Aqui utilizo el compareTo() de Contacto se pone null para obligar a organizar en eso
 
         // Mostrar todos los contactos ordenados
         System.out.println(bundle.getString("contacto.listaContactos"));
