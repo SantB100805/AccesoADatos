@@ -1,0 +1,15 @@
+2024-10-10 20:09:10,612 ERROR  [main] Error connecting database
+java.sql.SQLSyntaxErrorException: (conn=4) Unknown database 'empresa'
+	at org.mariadb.jdbc.export.ExceptionFactory.createException(ExceptionFactory.java:289) ~[mariadb-java-client-3.4.1.jar:?]
+	at org.mariadb.jdbc.export.ExceptionFactory.create(ExceptionFactory.java:378) ~[mariadb-java-client-3.4.1.jar:?]
+	at org.mariadb.jdbc.client.impl.StandardClient.authenticationHandler(StandardClient.java:306) ~[mariadb-java-client-3.4.1.jar:?]
+	at org.mariadb.jdbc.client.impl.StandardClient.<init>(StandardClient.java:226) ~[mariadb-java-client-3.4.1.jar:?]
+	at org.mariadb.jdbc.Driver.connect(Driver.java:68) ~[mariadb-java-client-3.4.1.jar:?]
+	at org.mariadb.jdbc.Driver.connect(Driver.java:92) ~[mariadb-java-client-3.4.1.jar:?]
+	at org.mariadb.jdbc.Driver.connect(Driver.java:26) ~[mariadb-java-client-3.4.1.jar:?]
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681) ~[java.sql:?]
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229) ~[java.sql:?]
+	at es.cheste.Unidad1.basesDatos.ConexionBD.conectar(ConexionBD.java:32) [classes/:?]
+	at es.cheste.Unidad1.basesDatos.ConexionBD.getConnection(ConexionBD.java:52) [classes/:?]
+	at es.cheste.Unidad1.basesDatos.JDBC_select1.hacerSelect(JDBC_select1.java:23) [classes/:?]
+	at es.cheste.Unidad1.basesDatos.JDBC_select1.main(JDBC_select1.java:15) [classes/:?]
