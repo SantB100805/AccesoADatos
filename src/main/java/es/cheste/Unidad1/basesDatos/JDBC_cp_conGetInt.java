@@ -41,9 +41,6 @@ public class JDBC_cp_conGetInt {
         }
     }
 
-        public static void mostrarResultadosInverso() {
-
-        }
-    }
+ }
 
 
