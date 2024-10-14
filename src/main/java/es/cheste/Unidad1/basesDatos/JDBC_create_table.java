@@ -19,7 +19,7 @@ public class JDBC_create_table {
 
     private static void crearTabla(ConexionBD conexion) {
 
-        String sql = "CREATE TABLE CLIENTES (DNI CHAR(9) NOT NULL, APELLIDOS VARCHAR(32) NOT NULL, CP CHAR(5), PRIMARY KEY (DNI))";
+        String sql = "CREATE TABLE CLIENTES1 (DNI CHAR(9) NOT NULL, APELLIDOS VARCHAR(32) NOT NULL, CP CHAR(5), PRIMARY KEY (DNI))";
         if(conexion == null) {
             LOGGER.error("No hay conexión con base de datos, no se puede ejecutar la consulta.");
             System.out.println("No hay conexión con base de datos, no se puede ejecutar la consulta.");
