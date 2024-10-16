@@ -33,7 +33,7 @@ public class JDBC_ConsultaClientes {
             // Preparar la consulta SQL
             String sql = "SELECT * FROM CLIENTES1 WHERE DNI = ?";
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, dniCliente);  // Sustituir el parámetro de la consulta por el DNI
+            pstmt.setString(1, dniCliente);
 
             // Ejecutar la consulta
             rs = pstmt.executeQuery();
@@ -53,15 +53,6 @@ public class JDBC_ConsultaClientes {
 
         } catch (SQLException e) {
             System.err.println("Error al realizar la consulta: " + e.getMessage());
-        } finally {
-            try {
-                // Cerrar el ResultSet, PreparedStatement y la conexión
-                if (rs != null) rs.close();
-                if (pstmt != null) pstmt.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                System.err.println("Error al cerrar recursos: " + e.getMessage());
-            }
         }
     }
 }
